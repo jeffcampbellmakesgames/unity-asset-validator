@@ -1,0 +1,8 @@
+{
+    "name": "JCMG.AssetValidator",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
