@@ -3,7 +3,7 @@ The official repository for Asset Validator, an editor tool for validating asset
 
 **Last Updated:** 03/05/2019 9:05 AM
 
-![alt text](AssetValidatorEditorWindow.png "Editor Window")
+![alt text](Documentation/AssetValidatorEditorWindow.png "Editor Window")
 
 ## Unity Editor Compatibility
 Greater than or equal to 2017.4.X LTS
@@ -26,7 +26,7 @@ The AssetValidator is an editor tool for validating scenes and assets. It makes 
 To run the validators manually, there are a couple of options for doing so:
 * **Dedicated Window**: By selecting the menu items "Window->Asset Validator" or by selecting "Tools->Asset Validator->" you can either launch a window with options for configuring and executing validators and then manually run, or run validation through a pre-configured menu item option. Here are several such options:
 
-![alt text](AssetValidatorMenuItems.png "Editor Menu Items")
+![alt text](Documentation/AssetValidatorMenuItems.png "Editor Menu Items")
 
   * **Validate Project Assets:** All Project, Field, and Object validators will be run on assets in the Asset project folder.
 
