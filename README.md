@@ -1,12 +1,12 @@
 # Asset Validator
 The official repository for Asset Validator, an editor tool for validating assets in the project and in scenes.
 
-**Last Updated:** 1/25/2018 4:46 PM
+**Last Updated:** 03/05/2019 9:05 AM
 
-![alt text](AssetValidatorEditorWindow.png "Editor Window")
+![alt text](Documentation/AssetValidatorEditorWindow.png "Editor Window")
 
 ## Unity Editor Compatibility
-Tested on versions 5.2.2f1 through 2017.3.0f3
+Greater than or equal to 2017.4.X LTS
 
 ## Roadmap
 The roadmap for this project can be seen on the public trello board found here: https://trello.com/b/hDEXoZ7G
@@ -20,12 +20,13 @@ The AssetValidator is an editor tool for validating scenes and assets. It makes 
 
 * **Cross Scene Validators:** A validator derived from ```BaseCrossSceneValidator``` used to aggregate information across one or more scenes using a ```Search()``` method fired once per scene and then fires a ```Validate()``` method at the end of searching all target scenes to validate based on the results. No attributes are directly used for Cross Scene Validators.
 
-* **Project Validators:** A validator derived from ```BaseProjectValidator``` that can be fired once against the project using its ```Validate()``` method and validate assets and/or settings in the project. No attributes are directly used for Project Validators
+* **Project Validators:** A validator derived from ```ProjectValidatorBase``` that can be fired once against the project using its ```Validate()``` method and validate assets and/or settings in the project. No attributes are directly used for Project Validators
 
 ## Usage
 To run the validators manually, there are a couple of options for doing so:
-* **Dedicated Window**: By selecting the menu items "Window->Asset Validator" or by selecting "Tools->Asset Validator->*" you can either launch a window with options for configuring and executing validators and then manually run, or run validation through a pre-configured menu item option. Here are several such options:
-![alt text](AssetValidatorMenuItems.png "Editor Menu Items")
+* **Dedicated Window**: By selecting the menu items "Window->Asset Validator" or by selecting "Tools->Asset Validator->" you can either launch a window with options for configuring and executing validators and then manually run, or run validation through a pre-configured menu item option. Here are several such options:
+
+![alt text](Documentation/AssetValidatorMenuItems.png "Editor Menu Items")
 
   * **Validate Project Assets:** All Project, Field, and Object validators will be run on assets in the Asset project folder.
 
@@ -44,31 +45,31 @@ To run the validators manually, there are a couple of options for doing so:
 [TestFixture]
 public class AssetValidatorCIExamples
 {
-    [Test]
-    [Ignore("This is an example of how to run the AssetValidator only on Project Assets" +
-            "as a Unit Test or CI process.")]
-    public void RunAssetValidatorOnProjectAssetsOnly()
-    {
-        var result = AssetValidatorCI.RunValidation(SceneValidationMode.None, 
-                                                    OutputFormat.None, 
-                                                    doValidateProjectAssets:true);
+[Test]
+[Ignore("This is an example of how to run the AssetValidator only on Project Assets" +
+        "as a Unit Test or CI process.")]
+public void RunAssetValidatorOnProjectAssetsOnly()
+{
+    var result = AssetValidatorCI.RunValidation(SceneValidationMode.None,
+                                                OutputFormat.None,
+                                                doValidateProjectAssets:true);
 
-        Assert.True(result.isSuccessful, result.message);
-    }
+    Assert.True(result.isSuccessful, result.message);
+}
 
-    [Test]
-    [Ignore("This is an example of how to run the AssetValidator on Project Assets and on Build and AssetBundle Scenes" +
-            "and write out the results to a datetime formatted html log as a Unit Test or CI process.")]
-    public void RunAssetValidatorOnProjectAssets_BuildAndAssetBundleScenes()
-    {
-        var loggerFileName = string.Format("asset_validator_results_{0:h_mm_ss_MM_dd_yyyy}", DateTime.Now);
-        var result = AssetValidatorCI.RunValidation(SceneValidationMode.AllBuildAndAssetBundleScenes, 
-                                                    OutputFormat.Html,
-                                                    doValidateProjectAssets:true,
-                                                    fileName: loggerFileName);
+[Test]
+[Ignore("This is an example of how to run the AssetValidator on Project Assets and on Build and AssetBundle Scenes" +
+        "and write out the results to a datetime formatted html log as a Unit Test or CI process.")]
+public void RunAssetValidatorOnProjectAssets_BuildAndAssetBundleScenes()
+{
+    var loggerFileName = string.Format("asset_validator_results_{0:h_mm_ss_MM_dd_yyyy}", DateTime.Now);
+    var result = AssetValidatorCI.RunValidation(SceneValidationMode.AllBuildAndAssetBundleScenes,
+                                                OutputFormat.Html,
+                                                doValidateProjectAssets:true,
+                                                fileName: loggerFileName);
 
-        Assert.True(result.isSuccessful, result.message);
-    }
+    Assert.True(result.isSuccessful, result.message);
+}
 }
 ```
 
@@ -81,8 +82,8 @@ These are valididators currently available for use in the project, organized by 
 
 ```csharp
 /// <summary>
-/// ProjectReferenceComponent is a Monobehavior derived class that has been marked as a [Validate]
-/// target. All instances of ProjectReferenceComponent will be found in any scenes searched and in the 
+/// ProjectReferenceComponent is a MonoBehavior derived class that has been marked as a [Validate]
+/// target. All instances of ProjectReferenceComponent will be found in any scenes searched and in the
 /// project on prefabs if searched. Any fields with [IsProjectReference] will be checked to ensure they
 /// are not null and that the Object it refers to is a project asset.
 /// </summary>
@@ -98,8 +99,8 @@ public class ProjectReferenceComponent : MonoBehaviour
 
 ```csharp
 /// <summary>
-/// SceneReferenceComponent is a Monobehavior derived class that has been marked as a [Validate]
-/// target. All instances of SceneReferenceComponent will be found in any scenes searched and in the 
+/// SceneReferenceComponent is a MonoBehavior derived class that has been marked as a [Validate]
+/// target. All instances of SceneReferenceComponent will be found in any scenes searched and in the
 /// project on prefabs if searched. Any fields with [IsSceneReference] will be checked to ensure they
 /// are not null and that the Object they refer to are in the same scene.
 /// </summary>
@@ -115,9 +116,9 @@ public class SceneReferenceComponent : MonoBehaviour
 
 ```csharp
 /// <summary>
-/// NonNullFieldComponent is a Monobehavior derived class that has been marked as a [Validate]
-/// target. Any fields of [NonNull] on it will be checked to see if it has a null value. If the 
-/// value of the field checked is null, a validation error will be dispatched. 
+/// NonNullFieldComponent is a MonoBehavior derived class that has been marked as a [Validate]
+/// target. Any fields of [NonNull] on it will be checked to see if it has a null value. If the
+/// value of the field checked is null, a validation error will be dispatched.
 /// </summary>
 [Validate]
 public class NonNullFieldComponent : MonoBehaviour
@@ -132,7 +133,7 @@ public class NonNullFieldComponent : MonoBehaviour
 
 ```csharp
 /// <summary>
-/// ResourcePathComponent is a Monobehavior derived class that has been marked as a [Validate]
+/// ResourcePathComponent is a MonoBehavior derived class that has been marked as a [Validate]
 /// target. Any fields of [ResourcePath] on it will be used in an attempt to load an object from
 /// the project using Resources.Load where the path will be the result of the ToString method of
 /// the field value.
@@ -174,8 +175,8 @@ public class ResourcePathObjectExample
 
 ```csharp
 /// <summary>
-/// HasComponentExampleChild is a Monobehavior derived class that has been marked as a [Validate]
-/// target due to [HasComponent] (a subclass attribute of [Validate]). All instances of HasComponentExampleChild 
+/// HasComponentExampleChild is a MonoBehavior derived class that has been marked as a [Validate]
+/// target due to [HasComponent] (a subclass attribute of [Validate]). All instances of HasComponentExampleChild
 /// will be found in any scenes searched and in the project on prefabs if searched. If the HasComponent type
 /// (in this case HasComponentExampleParent) is not found either on the object or on a parent object a validation error
 /// will be dispatched.
@@ -187,8 +188,8 @@ public class HasComponentExampleChild : MonoBehaviour
 }
 
 /// <summary>
-/// HasComponentExampleA is a Monobehavior derived class that has been marked as a [Validate]
-/// target due to [HasComponent] (a subclass attribute of [Validate]). All instances of HasComponentExampleParent 
+/// HasComponentExampleA is a MonoBehavior derived class that has been marked as a [Validate]
+/// target due to [HasComponent] (a subclass attribute of [Validate]). All instances of HasComponentExampleParent
 /// will be found in any scenes searched and in the project on prefabs if searched. If the HasComponent type
 /// (in this case HasComponentExampleChild) is not found either on the object or on a child object a validation error
 /// will be dispatched.
@@ -200,16 +201,16 @@ public class HasComponentExampleParent : MonoBehaviour
 }
 ```
 
-* **ZeroChildrenValidator:** Uses the ```[ZeroChilden]``` class attribute to ensure that the Gameobject has zero children.
+* **ZeroChildrenValidator:** Uses the ```[ZeroChildren]``` class attribute to ensure that the GameObject has zero children.
 
 ```csharp
 /// <summary>
-/// ZeroChildrenComponent is a Monobehavior derived class that has been marked as a [Validate]
-/// target due to [ZeroChilden] (a subclass attribute of [Validate]). All instances of ZeroChildrenComponent 
-/// will be found in any scenes searched and in the project on prefabs if searched. If any child gameobjects
+/// ZeroChildrenComponent is a MonoBehavior derived class that has been marked as a [Validate]
+/// target due to [ZeroChildren] (a subclass attribute of [Validate]). All instances of ZeroChildrenComponent
+/// will be found in any scenes searched and in the project on prefabs if searched. If any child GameObjects
 /// are found on the ZeroChildrenComponent instance, a validation error will be dispatched.
 /// </summary>
-[ZeroChilden]
+[ZeroChildren]
 public class ZeroChildrenComponent : MonoBehaviour
 {
 
@@ -223,7 +224,7 @@ public class ZeroChildrenComponent : MonoBehaviour
 
 ```csharp
 /// <summary>
-/// FooComponent is a Monobehavior derived component. There should only be 
+/// FooComponent is a MonoBehavior derived component. There should only be
 /// one FooComponent for any of the scenes searched.
 /// </summary>
 public class FooComponent : MonoBehaviour
@@ -232,19 +233,19 @@ public class FooComponent : MonoBehaviour
 }
 
 /// <summary>
-/// This is a subclass of EnsureComponentIsUniqueValidator; as the generic type is of FooComponent,  
-/// when this validator searches across one or more scenes, if it finds more than one instance of 
-/// FooComponent a validation warning will be dispatched per instance and an error noting that there 
+/// This is a subclass of EnsureComponentIsUniqueValidator; as the generic type is of FooComponent,
+/// when this validator searches across one or more scenes, if it finds more than one instance of
+/// FooComponent a validation warning will be dispatched per instance and an error noting that there
 /// should only be one instance.
 /// </summary>
 public class EnsureFooComponentIsUniqueValidator : EnsureComponentIsUniqueValidator<FooComponent>
 {
-        
+
 }
 
 ```
 
-* **MissingReferenceValidator:** Checks one or more Scenes to see if there are any missing Component references on every Gameobject and and their SerializedProperties in that scene.
+* **MissingReferenceValidator:** Checks one or more Scenes to see if there are any missing Component references on every GameObject and and their SerializedProperties in that scene.
 
 * **MultipleEventSystemsValidator:** Checks one or more Scenes to ensure that there is only one EventSystem.
 
@@ -259,12 +260,12 @@ public enum HeroClass
 {
     Warrior,
     Rogue,
-    Sorceror
+    Sorcerer
 }
 
 /// <summary>
-/// This example uses static data (in this case an enum of hero class types) to determine 
-/// which icons should be in a particular bundle and which name they are expected to be in. 
+/// This example uses static data (in this case an enum of hero class types) to determine
+/// which icons should be in a particular bundle and which name they are expected to be in.
 /// If they are not present, a validation error will be created with the details of the file
 /// it could not find.
 /// </summary>
@@ -290,10 +291,10 @@ public class HeroClassAssetBundleContract : AssetBundlePathContract
 
 ```csharp
 /// <summary>
-/// This is an example of an AssetProjectValidator that targets all files with a file extension of "unity". 
-/// When this validator is fired, it will find all files of that extension and attempt to load them using 
+/// This is an example of an AssetProjectValidator that targets all files with a file extension of "unity".
+/// When this validator is fired, it will find all files of that extension and attempt to load them using
 /// AssetDatabase.Load and pass the loaded object and the path to ValidateObject to see whether or not
-/// the asset passes validation or not. As validators of any type are an editor only feature, they 
+/// the asset passes validation or not. As validators of any type are an editor only feature, they
 /// must be placed into an Editor folder.
 /// </summary>
 [ValidatorTarget("test_project_asset_ext_validator")]
@@ -310,9 +311,9 @@ public class NoWhiteSpaceInSceneNamesAssetProjectValidator : AssetProjectValidat
 
         if (!sceneName.Contains(" ")) return true;
 
-        DispatchVLogEvent(assetObj, 
-                          VLogType.Error, 
-                          string.Format("Scene [{0}] should not have any whitespace in its name", 
+        DispatchVLogEvent(assetObj,
+                          VLogType.Error,
+                          string.Format("Scene [{0}] should not have any whitespace in its name",
                                         sceneName));
 
         return false;
@@ -328,12 +329,12 @@ public enum HeroClass
 {
     Warrior,
     Rogue,
-    Sorceror
+    Sorcerer
 }
 
 /// <summary>
-/// This example uses static data (in this case an enum of hero class types) to determine 
-/// which icons should be able to be loaded at a particular resources folder. If they are 
+/// This example uses static data (in this case an enum of hero class types) to determine
+/// which icons should be able to be loaded at a particular resources folder. If they are
 /// not present, a validation error will be created with the details of the file it could not find.
 /// </summary>
 public class HeroClassResourcePathContract : ResourcePathContract
@@ -358,25 +359,5 @@ public class HeroClassResourcePathContract : ResourcePathContract
 Not every validator is going to be needed or relevant in every project; the AssetOverrideConfig scriptable object provides a straightforward way of globally enabling or disabling specific validators in the project. One should already exist at the path 'Assets/JCMG/AssetValidator/Editor/Config/ValidatorOverrideConfig.asset' and if not a default one will be created in memory. All validators will be enabled by default when first created.
 
 ## License
-AssetValidator 
-Copyright (c) 2018 Jeff Campbell
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-        
 
