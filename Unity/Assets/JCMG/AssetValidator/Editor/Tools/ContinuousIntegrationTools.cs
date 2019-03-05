@@ -226,7 +226,7 @@ namespace JCMG.AssetValidator.Editor
 
 				var result = new Result
 				{
-					isSuccessful = logCache.Any(x => x.logType == LogType.Error)
+					isSuccessful = logCache.All(x => x.logType != LogType.Error)
 				};
 				result.message = result.isSuccessful
 					? ValidationSuccessMessage
