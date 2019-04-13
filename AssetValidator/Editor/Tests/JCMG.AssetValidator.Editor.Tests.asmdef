@@ -1,0 +1,15 @@
+{
+    "name": "JCMG.AssetValidator.Editor.Tests",
+    "references": [
+        "JCMG.AssetValidator",
+        "JCMG.AssetValidator.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

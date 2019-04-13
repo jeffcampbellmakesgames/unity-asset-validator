@@ -1,0 +1,1 @@
+Mark this folder as an AssetBundle named *unit_test_bundle* and uncheck ignore on the unit tests class named ```AssetBundlePathProjectValidatorTests``` to run the unit tests for the ```AssetBundlePathValidator```.
