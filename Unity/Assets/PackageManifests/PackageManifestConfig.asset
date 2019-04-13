@@ -15,7 +15,7 @@ MonoBehaviour:
   packageSourcePaths:
   - Assets/JCMG
   packageDestinationPath: ../../unity-asset-validator_release
-  packageName: com.jeffcampbellmakesgames.com
+  packageName: com.jeffcampbellmakesgames.assetvalidator
   displayName: JCMG Asset Validator
   packageVersion: 1.1.1
   unityVersion: 2018.1
