@@ -1,10 +1,7 @@
 {
   "dependencies": {
-    "com.unity.ads": "2.0.8",
-    "com.unity.analytics": "3.2.2",
-    "com.unity.collab-proxy": "1.2.15",
-    "com.unity.package-manager-ui": "2.0.3",
-    "com.unity.purchasing": "2.0.3",
+    "com.jeffcampbellmakesgames.packagetools": "https://github.com/jeffcampbellmakesgames/unity-package-tools.git#release/stable",
+    "com.unity.package-manager-ui": "2.0.7",
     "com.unity.textmeshpro": "1.3.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -36,5 +33,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.jeffcampbellmakesgames.packagetools": {
+      "hash": "2c2578f315df7c37dfd9158389f2b40424b63873",
+      "revision": "release/stable"
+    }
   }
 }
