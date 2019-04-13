@@ -1,15 +1,7 @@
 # Asset Validator
 The official repository for Asset Validator, an editor tool for validating assets in the project and in scenes.
 
-**Last Updated:** 03/05/2019 9:05 AM
-
 ![alt text](Documentation/AssetValidatorEditorWindow.png "Editor Window")
-
-## Unity Editor Compatibility
-Greater than or equal to 2017.4.X LTS
-
-## Roadmap
-The roadmap for this project can be seen on the public trello board found here: https://trello.com/b/hDEXoZ7G
 
 ## Overview
 The AssetValidator is an editor tool for validating scenes and assets. It makes substantial use of C# Reflection to infer which types should be validated and in which context. It offers several different base validator types to help handle different types of scenarios for validating assets as well as a library of existing validators.
@@ -358,6 +350,31 @@ public class HeroClassResourcePathContract : ResourcePathContract
 ## Override Config
 Not every validator is going to be needed or relevant in every project; the AssetOverrideConfig scriptable object provides a straightforward way of globally enabling or disabling specific validators in the project. One should already exist at the path 'Assets/JCMG/AssetValidator/Editor/Config/ValidatorOverrideConfig.asset' and if not a default one will be created in memory. All validators will be enabled by default when first created.
 
+## Unity Editor Compatibility
+Greater than or equal to 2017.4.X LTS
+
+## Roadmap
+The roadmap for this project can be seen on the public trello board found here: https://trello.com/b/hDEXoZ7G
+
 ## License
+MIT License
 
+Copyright (c) 2019 Jeff Campbell
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
