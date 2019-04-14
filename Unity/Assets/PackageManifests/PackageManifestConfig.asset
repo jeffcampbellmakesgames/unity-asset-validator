@@ -17,8 +17,8 @@ MonoBehaviour:
   packageDestinationPath: ../../unity-asset-validator_release
   packageName: com.jeffcampbellmakesgames.assetvalidator
   displayName: JCMG Asset Validator
-  packageVersion: 1.1.1
-  unityVersion: 2018.1
+  packageVersion: 1.1.2
+  unityVersion: 2018.3
   description: The AssetValidator is an editor tool for validating scenes and assets
     and can be used as a continuous integration tool for testing content regression.
   category: Tools
