@@ -1,14 +1,16 @@
 {
-	"name": "JCMG.AssetValidator.Editor",
-	"references": [
-		"JCMG.AssetValidator"
-	],
-	"optionalUnityReferences": [
-		"TestAssemblies"
-	],
-	"includePlatforms": [
-		"Editor"
-	],
-	"excludePlatforms": [],
-	"allowUnsafeCode": false
+    "name": "JCMG.AssetValidator.Editor",
+    "references": [
+        "JCMG.AssetValidator"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }
