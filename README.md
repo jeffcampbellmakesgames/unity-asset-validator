@@ -1,5 +1,10 @@
+
 # Asset Validator
 The official repository for Asset Validator, an editor tool for validating assets in the project and in scenes.
+
+**NOTE:** _I have archived this as I've personally adopted the OdinValidator tool found [here](https://odininspector.com/odin-project-validator) in serving the same role. If anyone is interested in adopting this and continuing on, feel free!_ 
+
+- _ Jeff Campbell _
 
 ![alt text](Documentation/AssetValidatorEditorWindow.png "Editor Window")
 
